@@ -30,4 +30,11 @@ jobs:
       # Step 4: Run tests
       - name: Run tests
         run: |
-          pytest
+          mkdir -p test-res
+          python -m unittest discover > test-res/output.log
+
+      - name: upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-res
+          path: test-res
